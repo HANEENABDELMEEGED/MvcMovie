@@ -11,6 +11,13 @@ builder.Services.AddDbContext<MvcMovieContext>(options =>
 
 var app = builder.Build();
 
+// Apply database migrations automatically when the application starts.
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<MvcMovieContext>();
+    context.Database.Migrate();
+}
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

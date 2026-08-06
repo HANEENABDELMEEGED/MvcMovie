@@ -55,6 +55,20 @@ Dockerfile          Deployment configuration for Railway
 | Edit Movie | Updates existing movie information |
 | Delete Movie | Shows a confirmation page before removing a movie |
 
+## Screenshots
+
+### Home Page
+
+![Home Page](wwwroot/images/home_page.png)
+
+### Movies Page
+
+![Movies Page](wwwroot/images/movies_page.png)
+
+### Movie Details
+
+![Movie Details](wwwroot/images/details_page.png)
+
 ## Run Locally
 
 1. Clone the repository:

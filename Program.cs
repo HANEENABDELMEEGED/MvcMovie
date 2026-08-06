@@ -15,7 +15,9 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<MvcMovieContext>();
+
     context.Database.Migrate();
+    SeedData.Initialize(context);
 }
 
 if (!app.Environment.IsDevelopment())

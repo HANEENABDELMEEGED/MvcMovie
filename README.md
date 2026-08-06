@@ -57,17 +57,19 @@ Dockerfile          Deployment configuration for Railway
 
 ## Screenshots
 
+## Screenshots
+
 ### Home Page
 
-![Home Page](wwwroot/images/home_page.png)
+![Home Page](./wwwroot/images/home_page.png)
 
 ### Movies Page
 
-![Movies Page](wwwroot/images/movies_page.png)
+![Movies Page](./wwwroot/images/movies_page.png)
 
 ### Movie Details
 
-![Movie Details](wwwroot/images/details_page.png)
+![Movie Details](./wwwroot/images/details_page.png)
 
 ## Run Locally
 

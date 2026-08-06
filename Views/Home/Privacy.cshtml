@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Privacy";
+}
+
+<style>
+    .privacy-page {
+        max-width: 900px;
+        margin: 55px auto;
+    }
+
+    .privacy-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(49, 46, 129, 0.12);
+        border: 1px solid #ede9fe;
+    }
+
+    .privacy-header {
+        background: linear-gradient(135deg, #1e1b4b, #6d28d9);
+        color: white;
+        padding: 38px;
+    }
+
+    .privacy-header h1 {
+        margin: 0;
+        font-size: 2.2rem;
+        font-weight: 800;
+    }
+
+    .privacy-header p {
+        margin: 10px 0 0;
+        color: #e9d5ff;
+        font-size: 1.1rem;
+    }
+
+    .privacy-body {
+        padding: 38px;
+        color: #4b5563;
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    .privacy-item {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .privacy-icon {
+        font-size: 1.5rem;
+    }
+
+    .privacy-item h3 {
+        color: #312e81;
+        font-size: 1.15rem;
+        margin: 0 0 5px;
+        font-weight: 700;
+    }
+
+    .privacy-item p {
+        margin: 0;
+    }
+</style>
+
+<div class="privacy-page">
+    <div class="privacy-card">
+        <div class="privacy-header">
+            <h1>🔒 Privacy Policy</h1>
+            <p>Your movie collection is private and under your control.</p>
+        </div>
+
+        <div class="privacy-body">
+            <div class="privacy-item">
+                <div class="privacy-icon">🎬</div>
+                <div>
+                    <h3>Movie Collection Data</h3>
+                    <p>
+                        This application stores movie titles, release dates, genres,
+                        prices, and poster paths only to organize your collection.
+                    </p>
+                </div>
+            </div>
+
+            <div class="privacy-item">
+                <div class="privacy-icon">💾</div>
+                <div>
+                    <h3>Local Storage</h3>
+                    <p>
+                        The current version uses a local SQLite database.
+                        Your movie data is not shared with third parties.
+                    </p>
+                </div>
+            </div>
+
+            <div class="privacy-item">
+                <div class="privacy-icon">🛡️</div>
+                <div>
+                    <h3>No Personal Accounts</h3>
+                    <p>
+                        MvcMovie does not currently collect personal information,
+                        passwords, or payment details.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

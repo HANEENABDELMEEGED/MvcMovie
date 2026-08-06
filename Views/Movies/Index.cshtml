@@ -1,0 +1,174 @@
+@model IEnumerable<MvcMovie.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<style>
+    .movie-page {
+        margin-top: 35px;
+    }
+
+    .movie-page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .movie-page-header h1 {
+        color: #312e81;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .add-movie-button {
+        background: #6d28d9;
+        color: white;
+        border-radius: 9px;
+        padding: 10px 18px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .add-movie-button:hover {
+        background: #5b21b6;
+        color: white;
+    }
+
+    .search-box {
+        background: white;
+        padding: 18px;
+        border-radius: 14px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        margin-bottom: 28px;
+    }
+
+    .movie-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: 22px;
+    }
+
+    .movie-card {
+        display: block;
+        overflow: hidden;
+        border-radius: 14px;
+        background: white;
+        text-decoration: none;
+        color: #1f2937;
+        box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+        transition: 0.25s;
+    }
+
+    .movie-card:hover {
+        transform: translateY(-7px);
+        color: #1f2937;
+        box-shadow: 0 14px 28px rgba(76, 29, 149, 0.22);
+    }
+
+    .movie-poster {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .poster-placeholder {
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1e1b4b, #6d28d9);
+        color: white;
+        font-size: 3rem;
+    }
+
+    .movie-info {
+        padding: 16px;
+    }
+
+    .movie-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #312e81;
+        margin-bottom: 8px;
+    }
+
+    .movie-meta {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .genre-tag {
+        display: inline-block;
+        background: #ede9fe;
+        color: #5b21b6;
+        border-radius: 20px;
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+</style>
+
+<div class="movie-page">
+
+    <div class="movie-page-header">
+        <h1>🎬 My Movies</h1>
+
+        <a asp-action="Create" class="add-movie-button">
+            + Add Movie
+        </a>
+    </div>
+
+    <div class="search-box">
+        <form asp-controller="Movies" asp-action="Index" class="row g-2">
+            <div class="col-md-9">
+                <input type="text"
+                       class="form-control"
+                       name="searchString"
+                       placeholder="Search for a movie..." />
+            </div>
+
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-dark w-100">
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="movie-grid">
+        @foreach (var item in Model)
+        {
+            <a asp-action="Details"
+               asp-route-id="@item.Id"
+               class="movie-card">
+
+                @if (!string.IsNullOrEmpty(item.PosterUrl))
+                {
+                    <img src="@item.PosterUrl"
+                         alt="@item.Title poster"
+                         class="movie-poster" />
+                }
+                else
+                {
+                    <div class="poster-placeholder">🎬</div>
+                }
+
+                <div class="movie-info">
+                    <div class="movie-title">@item.Title</div>
+
+                    <div class="movie-meta">
+                        @item.ReleaseDate.ToString("yyyy")
+                        · $@item.Price
+                    </div>
+
+                    <span class="genre-tag">@item.Genre</span>
+                </div>
+            </a>
+        }
+    </div>
+
+</div>

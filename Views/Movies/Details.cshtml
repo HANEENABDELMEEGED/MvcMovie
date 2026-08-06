@@ -1,0 +1,167 @@
+@model MvcMovie.Models.Movie
+
+@{
+    ViewData["Title"] = "Movie Details";
+}
+
+<style>
+    .details-page {
+        max-width: 1000px;
+        margin: 50px auto;
+    }
+
+    .details-card {
+        display: grid;
+        grid-template-columns: 330px 1fr;
+        overflow: hidden;
+        border-radius: 20px;
+        background: white;
+        box-shadow: 0 12px 30px rgba(49, 46, 129, 0.15);
+    }
+
+    .details-poster {
+        width: 100%;
+        height: 100%;
+        min-height: 460px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #1e1b4b, #6d28d9);
+    }
+
+    .details-content {
+        padding: 45px;
+    }
+
+    .details-title {
+        color: #312e81;
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+    }
+
+    .details-genre {
+        display: inline-block;
+        background: #ede9fe;
+        color: #5b21b6;
+        padding: 7px 15px;
+        border-radius: 999px;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+
+    .details-info {
+        border-top: 1px solid #e5e7eb;
+        padding: 18px 0;
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.1rem;
+    }
+
+    .details-label {
+        color: #6b7280;
+        font-weight: 600;
+    }
+
+    .details-value {
+        color: #1f2937;
+        font-weight: 700;
+    }
+
+    .details-actions {
+        margin-top: 35px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .edit-button {
+        background: #6d28d9;
+        color: white;
+        border: none;
+        border-radius: 9px;
+        padding: 11px 22px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .delete-button {
+        background: #dc2626;
+        color: white;
+        border-radius: 9px;
+        padding: 11px 22px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .back-button {
+        color: #5b21b6;
+        padding: 11px 8px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    @@media (max-width: 700px) {
+        .details-card {
+            grid-template-columns: 1fr;
+        }
+
+        .details-poster {
+            height: 400px;
+            min-height: 0;
+        }
+
+        .details-content {
+            padding: 30px;
+        }
+    }
+</style>
+
+<div class="details-page">
+    <div class="details-card">
+
+        @if (!string.IsNullOrEmpty(Model.PosterUrl))
+        {
+            <img src="@Model.PosterUrl" alt="@Model.Title poster" class="details-poster" />
+        }
+        else
+        {
+            <div class="details-poster d-flex align-items-center justify-content-center fs-1">
+                🎬
+            </div>
+        }
+
+        <div class="details-content">
+            <h1 class="details-title">@Model.Title</h1>
+
+            <span class="details-genre">@Model.Genre</span>
+
+            <div class="details-info">
+                <span class="details-label">Release Year</span>
+                <span class="details-value">@Model.ReleaseDate.ToString("yyyy")</span>
+            </div>
+
+            <div class="details-info">
+                <span class="details-label">Price</span>
+                <span class="details-value">$@Model.Price</span>
+            </div>
+
+            <div class="details-info">
+                <span class="details-label">Genre</span>
+                <span class="details-value">@Model.Genre</span>
+            </div>
+
+            <div class="details-actions">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="edit-button">
+                    ✏️ Edit Movie
+                </a>
+
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="delete-button">
+                    🗑️ Delete Movie
+                </a>
+
+                <a asp-action="Index" class="back-button">
+                    ← Back to Movies
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+@model MvcMovie.Models.Movie
+
+@{
+    ViewData["Title"] = "Delete Movie";
+}
+
+<style>
+    .delete-page {
+        max-width: 850px;
+        margin: 50px auto;
+    }
+
+    .delete-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(127, 29, 29, 0.14);
+        border: 1px solid #fee2e2;
+    }
+
+    .delete-header {
+        background: linear-gradient(135deg, #7f1d1d, #dc2626);
+        color: white;
+        padding: 30px 38px;
+    }
+
+    .delete-header h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 800;
+    }
+
+    .delete-header p {
+        margin: 8px 0 0;
+        color: #fee2e2;
+    }
+
+    .delete-body {
+        padding: 35px 38px;
+    }
+
+    .movie-to-delete {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+        background: #f9fafb;
+        border-radius: 14px;
+        padding: 18px;
+        margin-bottom: 28px;
+    }
+
+    .delete-poster {
+        width: 90px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 10px;
+        background: #312e81;
+    }
+
+    .delete-movie-title {
+        color: #312e81;
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 7px;
+    }
+
+    .delete-movie-info {
+        color: #6b7280;
+    }
+
+    .warning-text {
+        color: #991b1b;
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
+
+    .confirm-delete-button {
+        background-color: #dc2626;
+        border: none;
+        padding: 11px 22px;
+        font-weight: 700;
+    }
+
+    .confirm-delete-button:hover {
+        background-color: #b91c1c;
+    }
+
+    .cancel-link {
+        color: #5b21b6;
+        font-weight: 600;
+        text-decoration: none;
+    }
+</style>
+
+<div class="delete-page">
+    <div class="delete-card">
+
+        <div class="delete-header">
+            <h1>🗑️ Delete Movie</h1>
+            <p>This action cannot be undone.</p>
+        </div>
+
+        <div class="delete-body">
+            <div class="movie-to-delete">
+                @if (!string.IsNullOrEmpty(Model.PosterUrl))
+                {
+                    <img src="@Model.PosterUrl" alt="@Model.Title poster" class="delete-poster" />
+                }
+                else
+                {
+                    <div class="delete-poster d-flex align-items-center justify-content-center fs-2">🎬</div>
+                }
+
+                <div>
+                    <div class="delete-movie-title">@Model.Title</div>
+                    <div class="delete-movie-info">
+                        @Model.ReleaseDate.ToString("yyyy") · @Model.Genre · $@Model.Price
+                    </div>
+                </div>
+            </div>
+
+            <p class="warning-text">
+                Are you sure you want to permanently delete this movie?
+            </p>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+
+                <button type="submit" class="btn btn-danger confirm-delete-button">
+                    Yes, Delete Movie
+                </button>
+
+                <a asp-action="Details" asp-route-id="@Model.Id" class="cancel-link ms-3">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
